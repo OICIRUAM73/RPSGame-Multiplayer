@@ -1,8 +1,8 @@
 {
-  "homepage": "https://github.com/OICIRUAM73/Rock-Paper-Scissors-Game#readme",
-  "name": "Rock_Paper_Scissors_Game",
+  "homepage": "https://github.com/OICIRUAM73/RPSGame-Multiplayer#readme",
+  "name": "Rock_Paper_Scissors Multiplayer_Game",
   "version": "1.0.0",
-  "description": "Rock Paper Scissors Game - Frontend Mentor challenge",
+  "description": "Rock Paper Scissors Multiplayer Game",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OICIRUAM73/Rock-Paper-Scissors-Game.git"
+    "url": "git+https://github.com/OICIRUAM73/RPSGame-Multiplayer.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OICIRUAM73/Rock-Paper-Scissors-Game/issues"
+    "url": "https://github.com/OICIRUAM73/RPSGame-Multiplayer/issues"
   },
   "dependencies": {
     "hashids": "^2.2.8",
