@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import Hashids from 'hashids';
   import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications/src'
   import Button from "./Button.svelte";
@@ -53,9 +54,9 @@
         $isHost = false;
         $roomName = joinRoomName;
       } catch (error) {
-        console.log(error.code);
         console.error(error);
         if(error.code = "not-found") {
+          notifier.danger("Room not found!")
           console.log("room not found!!");
         }
       }
@@ -63,6 +64,15 @@
       notifier.danger("The room name is empty!")
     }
   }
+
+  onMount(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomParam = urlParams.get('r');
+    if(roomParam !== null) {
+      joinRoomName = roomParam;
+      handleJoinRoomSubmit()
+    }
+  });
 </script>
 
 <style>

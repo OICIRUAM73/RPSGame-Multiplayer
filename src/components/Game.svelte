@@ -33,7 +33,9 @@
       if(!doc.data()) {
         $roomName = undefined;
       } else {
-        if(doc.data().visitorName && !$opponentName) {
+        if(!doc.data().visitorName) {
+          $opponentName = undefined;
+        } else if(doc.data().visitorName && !$opponentName) {
           $opponentName = $isHost? doc.data().visitorName : doc.data().hostName;
           if($isHost) notifier.success($opponentName + " has joined the room!")
         }
@@ -140,6 +142,15 @@
     }
   }
 
+  const copyLink = () => {
+    var copyText = document.getElementById("roomLink");
+    console.log("copyText",copyText)
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+     notifier.success("Link Copied!")
+  }
+
   onMount(async () => {
     try {
       await db
@@ -227,11 +238,23 @@
 
 <NotificationDisplay />
 {#if $opponentName === undefined}
+<div>
   <h3>Waiting for your opponent...</h3>
+  <p>
+    Room Link:  <input id="roomLink" type="text" value={window.location.href + "?r=" + $roomName}>
+  </p>
+  <Button on:click={copyLink} label="Copy Room Link" />
+</div>
 {:else}
   {#if !playerInGame}
     {#if opponentInGame}
-       <h3>Waiting for your opponent...</h3>
+      <div>
+        <h3>Waiting for your opponent...</h3>
+        <p>
+          Room Link:  <input id="roomLink" type="text" value={window.location.href + "?r=" + $roomName}>
+        </p>
+        <Button on:click={copyLink} label="Copy Room Link" />
+      </div>
     {:else}
       {#if $isHost}
         <Button on:click={handleStartGame} label="Start Game" />
